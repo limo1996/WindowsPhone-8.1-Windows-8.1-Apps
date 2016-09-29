@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="Timetable.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Timetable"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource MainPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Margin="38,141,0,0" 
+                 TextWrapping="Wrap" Text="From" VerticalAlignment="Top"
+                 Height="45" Width="276" Foreground="Gray" GotFocus="TextBox_GotFocus"
+                 FontSize="25" Name="FromTextBox" TextChanged="TextBox_TextChanges"/>
+        <TextBox HorizontalAlignment="Left" Margin="38,256,0,0" 
+                 TextWrapping="Wrap" Text="To" VerticalAlignment="Top"
+                 Height="45" Width="276" Name="ToTextBox" FontSize="25"
+                 Foreground="Gray" GotFocus="TextBox_GotFocus" TextChanged="TextBox_TextChanges"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="38,338,0,0" Name="SearchButton" 
+                VerticalAlignment="Top" Width="276" Height="73" Background="{StaticResource SearchButtonBackgroundThemeBrush}"
+                Click="Search" DragOver="SearchButton_DragOver"/>
+        <AppBarButton HorizontalAlignment="Left" Icon="Flag"
+                      Margin="311,129,0,0" VerticalAlignment="Top"
+                      Name="FromGetPosition" Height="67" Click="GetPosition"/>
+        <AppBarButton HorizontalAlignment="Left" Icon="Flag" Margin="311,244,0,0" 
+                      VerticalAlignment="Top" Name="ToGetPosition"
+                      Click="GetPosition"/>
+        <AppBarButton HorizontalAlignment="Left" Icon="Switch" Margin="304.5,177.583,0,0" 
+                      VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" 
+                      d:LayoutRounding="Auto" Name="SwitchButton" Click="Switch">
+            <AppBarButton.RenderTransform>
+                <CompositeTransform Rotation="90.191"/>
+            </AppBarButton.RenderTransform>
+        </AppBarButton>
+        <TextBlock HorizontalAlignment="Left" Margin="38,25,0,0" TextWrapping="Wrap" 
+                   Text="Timetable" VerticalAlignment="Top" FontSize="50" 
+                   Style="{StaticResource HeaderTextBlockStyle}"/>
+        <Popup HorizontalAlignment="Left" Margin="0,425,0,0" RenderTransformOrigin="0.5,0.5" Width="400">
+            <Popup.RenderTransform>
+                <CompositeTransform ScaleY="-1"/>
+            </Popup.RenderTransform>
+            <Grid Background="#FFE5E5E5" Height="214" Width="399" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <CompositeTransform ScaleY="-1"/>
+                </Grid.RenderTransform>
+                <!--TODO:write popo up-->
+            </Grid>
+        </Popup>
+        <AppBarButton HorizontalAlignment="Left" Icon="Setting" Click="SettingsButton_Click"
+                      Margin="311,343,0,0" VerticalAlignment="Top" Height="58" Width="66"/>
+        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" 
+                Height="56" Margin="0,584,0,0" VerticalAlignment="Top"
+                Width="400" Background="#FF274B5A">
+            <Grid Margin="1.167,1.167,-1.167,-1">
+                <AppBarButton Name="InfoButton" Icon="Help" Margin="255,-2,0,0" Click="Navigate_InfoPage"/>
+                <AppBarButton Name="SettingsButton" Icon="Setting" Margin="319,-2,0,0" Click="NavigateToSettings"/>
+                <AppBarButton Name="LogInButton" Icon="Contact" Margin="-10,-2,0,0" Click="LogIn"/>
+                <TextBlock Name="ActualUserTextBox" Text="---" Margin="54,10,139,5" FontSize="30" />
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

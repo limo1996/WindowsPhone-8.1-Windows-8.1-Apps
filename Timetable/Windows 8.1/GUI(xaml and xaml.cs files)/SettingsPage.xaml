@@ -1,0 +1,137 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="Timetable.SettingsPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Timetable"
+    xmlns:common="using:Timetable.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">Settings</x:String>
+    </Page.Resources>
+
+    <Page.TopAppBar>
+        <AppBar Padding="10,0,20,0" Background="#FF0072C6" Height="73">
+            <Grid>
+                <AppBarButton Icon="Help" Name="HelpAppBarButton" Click="HelpAppBarButton_Click" 
+                              VerticalAlignment="Center" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+                <AppBarButton Icon="Contact" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                              Click="NavigateToLoginButton_Click"  Name="NavigateToLoginButton"/>
+                <TextBlock Text="----" Margin="80,17,500,0" FontSize="30" Foreground="White" 
+                           Name="LogInUserTextBlock"/>
+            </Grid>
+        </AppBar>
+    </Page.TopAppBar>
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Background="White">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}" Foreground="{StaticResource MainPageBackgroundThemeBrush}"
+                        Background="Transparent"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Foreground="{StaticResource MainPageBackgroundThemeBrush}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="355" 
+                Margin="36,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1300" Background="{StaticResource MainPageBackgroundThemeBrush}">
+            <Grid>
+                <TextBox Name="StationsTextBox" Margin="10,28,257,273" Text="Enter stations in order separated with comma..."
+                         FontSize="25" Foreground="Gray" TextChanged="StationsTextBox_TextChanged" GotFocus="TextBox_GotFocus"/>
+                <TextBlock Name="XStationsDetected" Text="0 Stations detected" Margin="1069,39,10,279" 
+                           FontSize="25"/>
+
+                <TextBlock Text="From" FontSize="25" Margin="28,121,1212,205"/>
+                <ComboBox Name="StationFromComboBox" Margin="103,115,1036,205" />
+                <TextBlock Text="To" FontSize="25" Margin="298,121,969,207" />
+                <ComboBox x:Name="StationToComboBox" Margin="336,115,803,205" />
+                <TextBlock Text="Range" FontSize="25" Margin="538,121,690,202"/>
+                <ComboBox x:Name="RangeComboBox" Margin="622,116,517,204" >
+                    <ComboBox.Items>
+                        <ComboBoxItem Foreground="Red" FontSize="25" Content="Distance" />
+                        <ComboBoxItem Foreground="Blue" FontSize="25" Content="Time" />
+                    </ComboBox.Items>
+                </ComboBox>
+                <TextBox Name="ValueTextBox" Text="Value (int)" FontSize="20" Foreground="Gray" Margin="822,116,326,204"
+                         GotFocus="TextBox_GotFocus" TextChanged="ValueTextBox_TextChanged"/>
+                <Button Name="AddRange" Content="Add Range" FontSize="20" Background="{StaticResource SearchButtonBackgroundThemeBrush}"
+                        Margin="1043,110,0,200" Height="45" Click="AddRange_Click"/>
+
+                <TextBlock Text="Station" FontSize="25" Margin="28,207,1194,119"/>
+                <ComboBox Name="StationComboBox" Margin="118,200,1021,119" />
+                <TextBlock Text="Lat" FontSize="25" Margin="315,207,925,119"/>
+                <TextBox x:Name="LatTextBox" Text="48.5694211" FontSize="20" Foreground="Gray" 
+                         Margin="363,201,785,119" GotFocus="TextBox_GotFocus" TextChanged="LatLonTextChanged"/>
+                <TextBlock Text="Lon" FontSize="25" Margin="550,207,700,119"/>
+                <TextBox x:Name="LonTextBox" Text="19.9689751" FontSize="20" Foreground="Gray" 
+                         Margin="605,201,543,119" GotFocus="TextBox_GotFocus" TextChanged="LatLonTextChanged"/>
+                <Button x:Name="AddPosition" Content="Add Position" FontSize="20" Background="{StaticResource SearchButtonBackgroundThemeBrush}"
+                	Margin="824,197,0,113" Height="45" Click="AddPosition_Click"/>
+
+                <TextBlock Text="Departures" FontSize="25" Margin="28,291,1145,35"/>
+                <ComboBox x:Name="DeparturesComboBox1" Margin="170,284,1061,35" SelectedItem="00"/>
+                <ComboBox x:Name="DeparturesComboBox2" Margin="262,284,969,35" SelectedItem="--"/>
+                <Button x:Name="AddPosition_Copy" Content="Add Departure" FontSize="20" Background="{StaticResource SearchButtonBackgroundThemeBrush}"
+                	Margin="382,280,0,30" Height="45" Click="AddDeparture_Click" />
+                <TextBlock Text=":" FontSize="30" Margin="248,284,1036,42"/>
+
+                <TextBox x:Name="IdOfLineTextBox" Text="ID of line (min 4 chars)" FontSize="20" Foreground="Gray" Margin="642,284,434,36"
+                         GotFocus="TextBox_GotFocus"/>
+
+                <Button Content="Add Line" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1125,288,7,10" 
+        	            Background="{StaticResource SearchButtonBackgroundThemeBrush}" FontSize="25" Click="AddLine"/>
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="171"
+                Margin="36,429,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1300" Background="#FF0072C6">
+            <Grid>
+                <Button Content="Add User" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF2C3E50" 
+                        Margin="1117,104,7,7" FontSize="25" Click="AddUser_Click"/>
+                <Border Background="White" BorderThickness="2" Margin="636,-17,623,-18" />
+                <TextBox Name="Username" FontSize="25" Text="username" Foreground="Gray" GotFocus="TextBox_GotFocus" Margin="692,19,378,103" 
+                         TextWrapping="NoWrap"/>
+                <TextBox x:Name="Password" FontSize="25" Text="password" Foreground="Gray" GotFocus="TextBox_GotFocus" Margin="949,19,127,103" 
+                	TextWrapping="NoWrap"/>
+                <TextBox x:Name="Fullname" FontSize="25" Text="fullname" Foreground="Gray" GotFocus="TextBox_GotFocus" Margin="692,107,378,17" 
+                	TextWrapping="NoWrap"/>
+                <TextBox x:Name="ID" FontSize="25" Text="ID" Foreground="Gray" GotFocus="TextBox_GotFocus" Margin="949,107,208,17" 
+                	TextWrapping="NoWrap"/>
+                <Button Content="Reset whole app" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        Background="#FF2C3E50" Margin="365,104,666,7" FontSize="25" Name="ResetButton"
+                        Click="ResetButton_Click"/>
+                <ComboBox Margin="28,19,1026,103" FontSize="25" Name="IdsOfLineCombobox"/>
+                <Button Name="RemoveLineButton" FontSize="25" Background="#FF2C3E50" Click="RemoveLineButton_Click" 
+                        Content="Remove Line" Margin="365,16,0,94" Height="61" Width="269"/>
+                <Button Name="SaveLineToXmlButton" FontSize="25" Background="{StaticResource SearchButtonBackgroundThemeBrush}"
+                        Content="Save Line in XML" Margin="25,104,0,7" Height="60" Width="252" Click="SaveLineToXmlButton_Click"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Page>

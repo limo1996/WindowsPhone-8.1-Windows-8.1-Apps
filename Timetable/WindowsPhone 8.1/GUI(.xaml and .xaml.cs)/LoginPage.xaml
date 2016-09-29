@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="Timetable.Pages.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Timetable.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#FF3598DC">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="Timetable" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="VERIFICATION" Margin="0,-6.5,0,26.5" 
+                       Style="{ThemeResource HeaderTextBlockStyle}" 
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"
+                       />
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left"
+                Height="295" Margin="19,69.833,0,0" Grid.Row="1" VerticalAlignment="Top"
+                Width="362" Background="White">
+            <Grid Margin="0,0,-0.333,0.333">
+                <TextBlock Text="Login" Foreground="Gray" Style="{StaticResource HeaderTextBlockStyle}"
+                           Margin="125,0,126,196" FontSize="45"/>
+                <TextBox Text="username" Foreground="Gray" FontSize="30"
+                	Height="53" Margin="34,72,34,0" Background="LightGray"
+                         Name="UsernameTextBox" GotFocus="TextBox_GotFocus"/>
+                <PasswordBox Password="password" Name="PasswordTextBox"
+                             Background="LightGray" Foreground="Gray" FontSize="30" 
+                             Height="53" Margin="34,144,34,0" GotFocus="PasswordBox_TextBox"/>
+                <Button Name="LoginButton" Content="log in" BorderThickness="0"
+                        Foreground="White" Background="#FF3598DC" Margin="34,208,0,16" 
+                        Width="293" Height="71" FontSize="35" DragOver="LoginButton_DragOver"
+                        Click="LogIn_Click"/>
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" 
+                Height="56" Margin="0,454.833,-2,0" Grid.Row="1" VerticalAlignment="Top"
+                Width="402" Background="#FF274B5A">
+            <Grid Margin="1.167,1.167,-1.167,-1">
+                <AppBarButton Name="InfoButton" Icon="Help" Margin="255,-2,0,0" Click="Navigate_InfoPage"/>
+                <AppBarButton Name="SettingsButton" Icon="Setting" Margin="319,-2,0,0" Click="Navigate_Settings"/>
+                <AppBarButton Name="LogInButton" Icon="Contact" Margin="-10,-2,0,0" Click="LogIn"/>
+                <TextBlock Name="ActualUserTextBox" Text="---" Margin="54,10,139,5" FontSize="30" />
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

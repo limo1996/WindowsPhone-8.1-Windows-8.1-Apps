@@ -1,0 +1,45 @@
+﻿<Page
+    x:Class="Timetable.Pages.PositionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Timetable.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource PopupBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="MY APPLICATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="Enter position:" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,50.833,306,416">
+            <TextBlock Text="LAT" FontSize="38" Foreground="White" />
+            <TextBox Text="48.123456" FontSize="35" Height="60" Background="White" 
+                     GotFocus="TextBox_GotFocus" Foreground="Gray" Margin="123,-9,-291,-7"
+                     Name="LatTextBox"/>
+            <TextBlock Text="LON" FontSize="38" Foreground="White" Margin="0,139,0,-141" />
+            <TextBox Text="21.456789" FontSize="35" Height="60" Background="White"
+                     Foreground="Gray" GotFocus="TextBox_GotFocus" Margin="123,130,-291,-146"
+                     Name="LonTextBox"/>
+            <Button Content="Find" Background="{StaticResource SearchButtonBackgroundThemeBrush}" 
+                    DragOver="Button_DragOver" Click="Button_Click" Margin="44,315,-247,-343" Height="72"
+                    Width="278" FontSize="35"/>
+        </Grid>
+    </Grid>
+</Page>

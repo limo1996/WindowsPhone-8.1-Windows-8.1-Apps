@@ -1,0 +1,28 @@
+﻿<Application
+    x:Class="Timetable.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Timetable">
+    
+    <Application.Resources>
+        <SolidColorBrush x:Key="MainPageBackgroundThemeBrush" Color="#FF00ABEC"/>
+        <SolidColorBrush x:Key="PopupBackgroundThemeBrush" Color="#FF0072C6" />
+        <SolidColorBrush x:Key="SearchButtonBackgroundThemeBrush" Color="#FF89C402" />
+        <SolidColorBrush x:Key="SearchButtonMouseOverBackgroundThemeBrush" Color="#FFA5CE00" />
+        <SolidColorBrush x:Name="LogInPageBackgroundBrush" Color="#FF3598DC" />
+        <SolidColorBrush x:Name="LogInButtonBackgroundBrush" Color="#FF3598DC" />
+        <SolidColorBrush x:Name="LogInButtonDragOverBackgroundBrush" Color="#FF0F36D3" />
+        <SolidColorBrush x:Name="DeparturesPageBackgroundBrush" Color="#FF0A2562" />
+        <local:User x:Key="user" />
+        <local:ResultsContainer x:Key="Results" />
+        <local:SearchingSetttings x:Key="SearchingSettings"/>
+        <x:String x:Key="AboutApplication">Timetable is application for windows 8.1 and windows phone 8.1 devices. In administration mode users can add new lines
+        into timetable and also reset app. Every user can than search in the timetable, set the searching criteria and also find the closest station via coordinates.
+        This application uses Dijikstra`s algorithm in searching for the shortest way. Application takes into account trasfers, departures of the lines and counts
+        overall time and distance...</x:String>
+        <x:String x:Key="AboutAuthor">My name is Jakub Lichman and I am an student at Slovak University of Technology. I am studying applied informatics
+            at Faculty of Electrical Engineering and Information Technology. It`s my second year at a school and I am realy enjoying it! My prefered 
+            programming language is C# and .NET framework. I am 19 years old and love to have fun with my crew. Have a nice day!</x:String>
+    </Application.Resources>
+
+</Application>
